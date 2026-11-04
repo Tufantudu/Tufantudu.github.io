@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tufan Tudu — Creator • Storyteller • Builder</title>
+<meta name="description" content="Tufan Tudu — faceless YouTube creator, AI automation builder and storyteller. Home of The Hidden Archive.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e1420; --bg2:#0a0f18; --panel:#131e31; --line:#22304a;
+    --gold:#d4a94e; --gold2:#f0cd7e; --ink:#e8ecf4; --mut:#9fb0c9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;overflow-x:hidden}
+  h1,h2,h3{font-family:'Playfair Display',Georgia,serif}
+  a{color:var(--gold);text-decoration:none}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 1.25rem}
+
+  /* ---------- animated background glow ---------- */
+  .glow{position:fixed;inset:0;z-index:-1;overflow:hidden;background:
+    radial-gradient(900px 500px at 15% -10%, #1b2c4d 0%, transparent 60%),
+    radial-gradient(800px 480px at 90% 0%, #2a2110 0%, transparent 55%),
+    linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+  .glow::before,.glow::after{content:"";position:absolute;border-radius:50%;filter:blur(90px);opacity:.35}
+  .glow::before{width:420px;height:420px;background:#274a7c;top:-120px;left:-80px;animation:drift 16s ease-in-out infinite alternate}
+  .glow::after{width:360px;height:360px;background:#6b5518;bottom:-140px;right:-60px;animation:drift 20s ease-in-out infinite alternate-reverse}
+  @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(70px,50px) scale(1.15)}}
+
+  /* ---------- header ---------- */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(14,20,32,.78);border-bottom:1px solid rgba(34,48,74,.7)}
+  .nav{display:flex;align-items:center;gap:.9rem;padding:.8rem 0}
+  .nav img{width:50px;height:50px;border-radius:50%;box-shadow:0 0 0 2px rgba(212,169,78,.55),0 6px 18px rgba(0,0,0,.5);animation:logoIn 1s cubic-bezier(.2,.9,.3,1.2) both}
+  @keyframes logoIn{from{transform:scale(.4) rotate(-30deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+  .brand .name{font-family:'Playfair Display',Georgia,serif;font-size:1.3rem;line-height:1.1}
+  .brand .tag{color:var(--mut);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase}
+  .links{margin-left:auto;display:flex;gap:1.4rem;font-size:.95rem}
+  .links a{color:var(--ink);position:relative;padding:.2rem 0}
+  .links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--gold);transition:width .35s ease}
+  .links a:hover{color:var(--gold2)}
+  .links a:hover::after{width:100%}
+  @media(max-width:640px){.links{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{text-align:center;padding:2.2rem 0 .5rem}
+  .bannerbox{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .bannerbox img{width:100%;display:block;animation:kenburns 26s ease-in-out infinite alternate}
+  @keyframes kenburns{from{transform:scale(1) translateY(0)}to{transform:scale(1.12) translateY(-12px)}}
+  .bannerbox::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(14,20,32,.55));pointer-events:none}
+  .shine{position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.13) 50%,transparent 60%);transform:translateX(-120%);animation:shine 5.5s ease-in-out infinite;pointer-events:none;z-index:2}
+  @keyframes shine{0%,55%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
+  .hero h1{font-size:clamp(2rem,5.4vw,3.4rem);line-height:1.15;margin:2rem 0 .7rem;font-weight:800}
+  .grad{background:linear-gradient(92deg,var(--gold) 10%,#ffe9b0 45%,var(--gold) 90%);background-size:220% 100%;
+        -webkit-background-clip:text;background-clip:text;color:transparent;animation:gradMove 5s linear infinite}
+  @keyframes gradMove{to{background-position:220% 0}}
+  .hero p.lead{color:var(--mut);font-size:1.13rem;max-width:660px;margin:0 auto}
+  .typerow{margin-top:1.1rem;font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+  .typerow .caret{display:inline-block;width:2px;height:1em;background:var(--gold);margin-left:3px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .btns{margin-top:1.7rem;display:flex;gap:.85rem;justify-content:center;flex-wrap:wrap}
+  .btn{border:1px solid var(--gold);color:var(--gold);padding:.68rem 1.45rem;border-radius:999px;font-weight:600;transition:all .3s ease;background:rgba(212,169,78,.05)}
+  .btn:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(212,169,78,.25);text-decoration:none}
+  .btn.solid{background:linear-gradient(120deg,var(--gold),var(--gold2));color:#14100a;border:none}
+  .scrolldown{margin:2.4rem auto 0;width:26px;height:44px;border:2px solid var(--line);border-radius:14px;position:relative}
+  .scrolldown::before{content:"";position:absolute;left:50%;top:8px;width:5px;height:9px;margin-left:-2.5px;border-radius:3px;background:var(--gold);animation:wheel 1.8s ease-in-out infinite}
+  @keyframes wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(14px);opacity:0}100%{opacity:0}}
+
+  /* ---------- marquee ---------- */
+  .marquee{margin:3rem 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:.7rem 0;background:rgba(19,30,49,.5)}
+  .track{display:flex;gap:3rem;width:max-content;animation:scrollX 30s linear infinite;color:var(--mut);letter-spacing:.28em;text-transform:uppercase;font-size:.82rem;white-space:nowrap}
+  .track b{color:var(--gold);font-weight:600}
+  @keyframes scrollX{to{transform:translateX(-50%)}}
+
+  /* ---------- stats ---------- */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:2.6rem}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.3rem;text-align:center;transition:transform .35s ease,border-color .35s ease}
+  .stat:hover{transform:translateY(-5px);border-color:rgba(212,169,78,.6)}
+  .stat .num{font-family:'Playfair Display',Georgia,serif;font-size:2.1rem;color:var(--gold)}
+  .stat .lbl{color:var(--mut);font-size:.9rem;letter-spacing:.08em;text-transform:uppercase}
+
+  /* ---------- sections ---------- */
+  section{padding:3rem 0 .4rem}
+  h2{font-size:1.9rem;margin-bottom:.4rem}
+  h2::after{content:"";display:block;width:60px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);margin-top:.45rem;border-radius:2px}
+  .sub{color:var(--mut);margin-bottom:1.4rem;max-width:700px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.1rem}
+  .card{background:linear-gradient(180deg,#152238,var(--panel));border:1px solid var(--line);border-radius:14px;padding:1.4rem 1.5rem;position:relative;overflow:hidden;transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform .45s ease}
+  .card:hover{transform:translateY(-7px);border-color:rgba(212,169,78,.65);box-shadow:0 18px 40px rgba(0,0,0,.45)}
+  .card:hover::before{transform:scaleX(1)}
+  .card h3{font-size:1.25rem;margin-bottom:.45rem}
+  .card p{color:var(--mut);font-size:.99rem}
+  .badge{display:inline-block;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:#14100a;background:linear-gradient(120deg,var(--gold),var(--gold2));border-radius:5px;padding:.16rem .55rem;margin-bottom:.7rem;font-weight:700}
+  .badge.soon{background:#3a4c6e;color:var(--ink)}
+  .card a.more{display:inline-block;margin-top:.7rem;font-weight:600}
+
+  /* ---------- pipeline steps ---------- */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;counter-reset:step}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.2rem 1rem;text-align:center;transition:transform .3s ease}
+  .step:hover{transform:translateY(-5px) scale(1.02)}
+  .step .ico{font-size:1.7rem;display:block;margin-bottom:.4rem;animation:floaty 3.4s ease-in-out infinite}
+  .step:nth-child(2) .ico{animation-delay:.4s}.step:nth-child(3) .ico{animation-delay:.8s}
+  .step:nth-child(4) .ico{animation-delay:1.2s}.step:nth-child(5) .ico{animation-delay:1.6s}.step:nth-child(6) .ico{animation-delay:2s}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  .step h4{font-family:'Playfair Display',Georgia,serif;font-size:1.05rem;margin-bottom:.25rem}
+  .step p{color:var(--mut);font-size:.86rem}
+  .step .n{color:var(--gold);font-size:.75rem;letter-spacing:.2em}
+
+  footer{margin-top:3.4rem;padding:1.6rem 0 2.2rem;border-top:1px solid var(--line);text-align:center;color:#7e90ac;font-size:.93rem}
+  footer img{width:40px;height:40px;border-radius:50%;vertical-align:middle;margin-bottom:.5rem;animation:spinSlow 14s linear infinite}
+  @keyframes spinSlow{to{transform:rotate(360deg)}}
+
+  /* ---------- reveal on scroll ---------- */
+  .rv{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}.rv.d5{transition-delay:.5s}
+  .hero .rv{transform:translateY(22px)}
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<header>
+  <div class="wrap nav">
+    <img src="logo.png" alt="TT logo">
+    <div class="brand">
+      <div class="name">Tufan Tudu</div>
+      <div class="tag">Creator • Storyteller • Builder</div>
+    </div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#channels">Channels</a>
+      <a href="#process">Process</a>
+      <a href="#projects">Projects</a>
+      <a href="https://github.com/Tufantudu">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap hero">
+  <div class="bannerbox rv in">
+    <img src="banner.jpg" alt="A storyteller's desk — film projector, old Hollywood photos and a laptop">
+    <div class="shine"></div>
+  </div>
+  <h1 class="rv in">Stories the world <span class="grad">almost forgot</span>,<br>told with code &amp; cinema.</h1>
+  <p class="lead rv in">I build faceless YouTube channels and AI-powered video pipelines — researching buried stories,
+     scripting them, voicing them, and shipping finished films, end to end.</p>
+  <div class="typerow rv in"><span id="typer"></span><span class="caret"></span></div>
+  <div class="btns rv in">
+    <a class="btn solid" href="https://www.youtube.com/@TheHiddenArchive-x9u">▶ Watch The Hidden Archive</a>
+    <a class="btn" href="https://github.com/Tufantudu">GitHub Projects</a>
+  </div>
+  <div class="scrolldown" aria-hidden="true"></div>
+
+  <div class="stats">
+    <div class="stat rv"><div class="num" data-count="22" data-suffix="+">0</div><div class="lbl">Videos published</div></div>
+    <div class="stat rv d1"><div class="num" data-count="7900" data-suffix="+">0</div><div class="lbl">Channel views</div></div>
+    <div class="stat rv d2"><div class="num" data-count="2" data-suffix="">0</div><div class="lbl">Channels</div></div>
+    <div class="stat rv d3"><div class="num" data-count="100" data-suffix="%">0</div><div class="lbl">Faceless pipeline</div></div>
+  </div>
+</div>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="track">
+    <span>Faceless <b>YouTube</b></span><span>AI <b>Automation</b></span><span>Old Hollywood <b>Stories</b></span>
+    <span>Voice <b>Production</b></span><span>Video <b>Pipelines</b></span><span>Open <b>Tools</b></span>
+    <span>Research • <b>Script</b> • Film</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <section id="about">
+    <h2 class="rv">About</h2>
+    <p class="sub rv d1">I'm Tufan Tudu — a creator from India working where storytelling meets automation.
+      My channels are fully faceless: every video is researched, scripted, voiced and edited with an
+      AI-assisted pipeline I built myself, using public-domain archives and open tools.
+      No studio. No crew. Just stories, systems, and consistency.</p>
+  </section>
+
+  <section id="channels">
+    <h2 class="rv">Channels</h2>
+    <p class="sub rv d1">Long-form documentaries and explainers — made by one person, powered by a pipeline.</p>
+    <div class="cards">
+      <div class="card rv">
+        <span class="badge">● Live</span>
+        <h3>📺 The Hidden Archive</h3>
+        <p>Untold stories of old Hollywood — the marriages, secrets and scandals the studios tried to bury.
+           Calm long-form documentaries, sourced from biographies and archives.</p>
+        <a class="more" href="https://www.youtube.com/@TheHiddenArchive-x9u">Watch on YouTube →</a>
+      </div>
+      <div class="card rv d1">
+        <span class="badge soon">Coming soon</span>
+        <h3>❓ Wait, Why?</h3>
+        <p>Complicated things, explained simply — the human mind, how tech works, and hidden history,
+           in short, clear explainers.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <h2 class="rv">How every video is made</h2>
+    <p class="sub rv d1">One person. Six stages. Zero shortcuts on story.</p>
+    <div class="steps">
+      <div class="step rv"><span class="n">01</span><span class="ico">🔍</span><h4>Research</h4><p>Biographies, archives &amp; public-domain records</p></div>
+      <div class="step rv d1"><span class="n">02</span><span class="ico">✍️</span><h4>Script</h4><p>Cold hooks, numbered cases, sourced claims</p></div>
+      <div class="step rv d2"><span class="n">03</span><span class="ico">🎙️</span><h4>Voice</h4><p>Local AI narration, tuned for a calm pace</p></div>
+      <div class="step rv d3"><span class="n">04</span><span class="ico">🖼️</span><h4>Visuals</h4><p>Archival photos first, illustrations for the gaps</p></div>
+      <div class="step rv d4"><span class="n">05</span><span class="ico">🎬</span><h4>Edit</h4><p>FFmpeg assembly, Ken Burns, burned-in captions</p></div>
+      <div class="step rv d5"><span class="n">06</span><span class="ico">🚀</span><h4>Publish</h4><p>Thumbnail, chapters, sources — shipped</p></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="rv">Projects</h2>
+    <p class="sub rv d1">Open code behind the channels — free to read, learn from, and build on.</p>
+    <div class="cards">
+      <div class="card rv">
+        <h3>🎬 faceless-video-pipeline</h3>
+        <p>The free, local pipeline behind my channels: Kokoro TTS narration, public-domain photos +
+           AI illustrations, and FFmpeg assembly with burned-in captions.</p>
+        <a class="more" href="https://github.com/Tufantudu/faceless-video-pipeline">View on GitHub →</a>
+      </div>
+      <div class="card rv d1">
+        <h3>🏳️ Flag-Battle-Royale</h3>
+        <p>A flag battle-royale game — flags from around the world fight it out in an arena simulation.</p>
+        <a class="more" href="https://github.com/Tufantudu/Flag-Battle-Royale">View on GitHub →</a>
+      </div>
+      <div class="card rv d2">
+        <h3>🎥 Veo AI Video Generator</h3>
+        <p>An app for generating AI videos with Google Veo — experiments in prompt-to-film workflows.</p>
+        <a class="more" href="https://github.com/Tufantudu/Tufan-Tudu">View on GitHub →</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <img src="logo.png" alt=""><br>
+    © 2026 Tufan Tudu • Built with GitHub Pages • <a href="https://github.com/Tufantudu">github.com/Tufantudu</a>
+  </div>
+</footer>
+
+<script>
+  // duplicate marquee content for a seamless loop
+  var track = document.getElementById('track');
+  track.innerHTML += track.innerHTML;
+
+  // typing effect
+  var words = ['Creator', 'Storyteller', 'Builder', 'One-person studio'];
+  var el = document.getElementById('typer'), wi = 0, ci = 0, del = false;
+  (function type(){
+    var word = words[wi];
+    el.textContent = word.slice(0, ci);
+    if (!del) { ci++; if (ci > word.length) { del = true; return setTimeout(type, 1500); } }
+    else { ci--; if (ci === 0) { del = false; wi = (wi + 1) % words.length; } }
+    setTimeout(type, del ? 45 : 95);
+  })();
+
+  // reveal on scroll
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rv').forEach(function(n){ io.observe(n); });
+
+  // animated counters
+  var cio = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var n = e.target, target = +n.dataset.count, suf = n.dataset.suffix || '', t0 = null;
+      (function tick(ts){
+        if (!t0) t0 = ts;
+        var p = Math.min((ts - t0) / 1400, 1), v = Math.floor(target * (1 - Math.pow(1 - p, 3)));
+        n.textContent = v.toLocaleString('en-US') + (p === 1 ? suf : '');
+        if (p < 1) requestAnimationFrame(tick);
+      })(performance.now());
+      cio.unobserve(n);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.num').forEach(function(n){ cio.observe(n); });
+</script>
+</body>
+</html>
